@@ -18,84 +18,31 @@ class MainActivity2 : AppCompatActivity() {
         val start: Button =findViewById(R.id.button)
         val name2: TextView =findViewById(R.id.name2)
         var avatar2:String = ""
-        val p1:ImageView=findViewById(R.id.p1)
-        val p2:ImageView=findViewById(R.id.p2)
-        val p3:ImageView=findViewById(R.id.p3)
-        val p4:ImageView=findViewById(R.id.p4)
-        val p5:ImageView=findViewById(R.id.p5)
-        val p6:ImageView=findViewById(R.id.p6)
-
-        p1.setOnClickListener{
-            avatar2="p1"
-            p1.isVisible=false
-            p2.isVisible=true
-            p3.isVisible=true
-            p4.isVisible=true
-            p5.isVisible=true
-            p6.isVisible=true
+        val picsid = intArrayOf(R.id.p1, R.id.p2,R.id.p3,R.id.p4,R.id.p5,R.id.p6)
+        val pics= mutableListOf<ImageView>()
+        for(a in picsid.indices){
+            pics.add(findViewById(picsid[a]))
         }
-        p2.setOnClickListener{
-            avatar2="p2"
-            p2.isVisible=false
-            p1.isVisible=true
-            p3.isVisible=true
-            p4.isVisible=true
-            p5.isVisible=true
-            p6.isVisible=true
+        for (b in pics.indices){
+            pics[b].setOnClickListener {
+                avatar2="p"
+                avatar2+="${b+1}"
+                for (c in pics.indices){
+                    if(c==b)pics[b].isVisible=false
+                    else pics[c].isVisible=true
+                }
+            }
         }
-        p3.setOnClickListener{
-            avatar2="p3"
-            p3.isVisible=false
-            p1.isVisible=true
-            p2.isVisible=true
-            p4.isVisible=true
-            p5.isVisible=true
-            p6.isVisible=true
-
-        }
-        p4.setOnClickListener{
-            avatar2="p4"
-            p4.isVisible=false
-            p1.isVisible=true
-            p2.isVisible=true
-            p3.isVisible=true
-            p5.isVisible=true
-            p6.isVisible=true
-        }
-        p5.setOnClickListener{
-            avatar2="p5"
-            p5.isVisible=false
-            p1.isVisible=true
-            p2.isVisible=true
-            p3.isVisible=true
-            p4.isVisible=true
-            p6.isVisible=true
-        }
-        p6.setOnClickListener{
-            avatar2="p6"
-            p6.isVisible=false
-            p1.isVisible=true
-            p2.isVisible=true
-            p3.isVisible=true
-            p4.isVisible=true
-            p5.isVisible=true
-        }
-
-
-
         start.setOnClickListener{
             if(name2.text.toString()==""){
                 Toast.makeText(this@MainActivity2,"Enter Username and No of Games", Toast.LENGTH_SHORT).show()
-
             }
             else{
-
                 val intent= Intent(this, MainActivity3::class.java)
                 intent.putExtra("name2",name2.text.toString())
                 intent.putExtra("avatar2",avatar2)
                 intent.putExtra("name1",name1)
                 intent.putExtra("avatar1",avatar1)
-
                 startActivity(intent)
             }
     }}}

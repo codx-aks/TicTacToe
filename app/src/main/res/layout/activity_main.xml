@@ -8,6 +8,22 @@
     android:background="@drawable/bg1"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/compplay"
+        android:layout_width="139dp"
+        android:layout_height="47dp"
+
+        android:fontFamily="@font/aldrich"
+        android:text="one player"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <ImageView
         android:id="@+id/p1"
         android:layout_width="104dp"
@@ -149,11 +165,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="98dp"
+        android:layout_width="139dp"
         android:layout_height="47dp"
 
         android:fontFamily="@font/aldrich"
-        android:text="NEXT"
+        android:text="Two player"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 

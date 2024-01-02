@@ -1,5 +1,6 @@
 package com.example.tictactoedatabyte
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,94 +11,52 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val start: Button =findViewById(R.id.button)
+        val twoPlayer: Button =findViewById(R.id.button)
         val name: TextView=findViewById(R.id.name2)
         var avatar:String=""
-        val p1: ImageView =findViewById(R.id.p1)
-        val p2: ImageView =findViewById(R.id.p2)
-        val p3: ImageView =findViewById(R.id.p3)
-        val p4: ImageView =findViewById(R.id.p4)
-        val p5: ImageView =findViewById(R.id.p5)
-        val p6: ImageView =findViewById(R.id.p6)
-
-        p1.setOnClickListener{
-            avatar="p1"
-            p1.isVisible=false
-            p2.isVisible=true
-            p3.isVisible=true
-            p4.isVisible=true
-            p5.isVisible=true
-            p6.isVisible=true
+        val picsid = intArrayOf(R.id.p1, R.id.p2,R.id.p3,R.id.p4,R.id.p5,R.id.p6)
+        val pics= mutableListOf<ImageView>()
+        for(a in picsid.indices){
+            pics.add(findViewById(picsid[a]))
         }
-        p2.setOnClickListener{
-            avatar="p2"
-            p2.isVisible=false
-            p1.isVisible=true
-            p3.isVisible=true
-            p4.isVisible=true
-            p5.isVisible=true
-            p6.isVisible=true
-        }
-        p3.setOnClickListener{
-            avatar="p3"
-            p3.isVisible=false
-            p1.isVisible=true
-            p2.isVisible=true
-            p4.isVisible=true
-            p5.isVisible=true
-            p6.isVisible=true
-
-        }
-        p4.setOnClickListener{
-            avatar="p4"
-            p4.isVisible=false
-            p1.isVisible=true
-            p2.isVisible=true
-            p3.isVisible=true
-            p5.isVisible=true
-            p6.isVisible=true
-        }
-        p5.setOnClickListener{
-            avatar="p5"
-            p5.isVisible=false
-            p1.isVisible=true
-            p2.isVisible=true
-            p3.isVisible=true
-            p4.isVisible=true
-            p6.isVisible=true
-        }
-        p6.setOnClickListener{
-            avatar="p6"
-            p6.isVisible=false
-            p1.isVisible=true
-            p2.isVisible=true
-            p3.isVisible=true
-            p4.isVisible=true
-            p5.isVisible=true
+        for (b in pics.indices){
+            pics[b].setOnClickListener {
+                avatar="p"
+                avatar+="${b+1}"
+                for (c in pics.indices){
+                    if(c==b)pics[b].isVisible=false
+                    else pics[c].isVisible=true
+                }
+            }
         }
 
-
-
-
-
-
-        start.setOnClickListener{
+        twoPlayer.setOnClickListener{
             if(name.text.toString()=="" ){
                 Toast.makeText(this@MainActivity,"Enter Username", Toast.LENGTH_SHORT).show()
 
             }
             else{
-
                 val intent= Intent(this, MainActivity2::class.java)
                 intent.putExtra("name1",name.text.toString())
                 intent.putExtra("avatar1",avatar)
-
                 startActivity(intent)
             }
-
+        }
+        val onePlayer: Button =findViewById(R.id.compplay)
+        onePlayer.setOnClickListener{
+            if(name.text.toString()=="" ){
+                Toast.makeText(this@MainActivity,"Enter Username", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val intent= Intent(this, MainActivity4::class.java)
+                intent.putExtra("name1",name.text.toString())
+                intent.putExtra("avatar1",avatar)
+                startActivity(intent)
+            }
         }
     }
 }
